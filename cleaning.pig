@@ -41,7 +41,7 @@ formatted_data = FOREACH cleaned_data GENERATE
 
 filtered_data = FILTER formatted_data BY Quantity > 0 AND Total > 0;
 
--- 5. Once the data was cleaned and reformatted, the processed dataset was saved in outputs/cleaned_supermarket_sales.
+-- 5. Once the data was cleaned and reformatted, the processed dataset was saved in outputs/clean_supermarket_sales.
 
 STORE filtered_data INTO 'outputs/clean_supermarket_sales' USING PigStorage(',');
 
