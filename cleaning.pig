@@ -5,8 +5,7 @@
 
 -- 1. CSVLoader was used to correctly load the data without splitting columns on quoted commas, ensuring data consistency.
 
-sales_data = LOAD 'hdfs://localhost:9000/user/ryanc247/supermarket_sales/supermarket_sales.csv'
-                USING PigStorage(',')
+sales_data = LOAD 'hdfs://localhost:9000/user/ryanc247/supermarket_sales/supermarket_sales.csv' USING PigStorage(',')
                AS (InvoiceID:chararray, Branch:chararray, City:chararray, CustomerType:chararray,
                    Gender:chararray, ProductLine:chararray, UnitPrice:float, Quantity:int,
                    Tax:float, Total:float, Date:chararray, Time:chararray, Payment:chararray,
