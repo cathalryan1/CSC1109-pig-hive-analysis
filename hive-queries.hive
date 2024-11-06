@@ -1,0 +1,60 @@
+-- I first started with two simple queries in Hive.
+
+-- 1. Total Sales By Product Line
+-- The first query calculates total sales by each product line, giving an overview of which product categories contribute the most to revenue.
+-- This query groups the data by ProductLine and sums up the Total sales in each category, then orders the results in descending order by TotalSales and limits the output to the top 5 product lines.
+
+SELECT ProductLine, SUM(Total) AS TotalSales
+FROM clean_supermarket_sales
+GROUP BY ProductLine
+ORDER BY TotalSales DESC
+LIMIT 5;
+
+-- 2. Average Rating By City for Orders Above 500
+-- The second query finds the average customer rating by city for orders over 500.
+-- This filters records to include only orders with Total greater than 500, groups them by City, calculates the average Rating, and sorts the results by the highest AverageRating values.
+   
+SELECT City, AVG(Rating) AS AverageRating
+FROM clean_supermarket_sales
+WHERE Total > 500
+GROUP BY City
+ORDER BY AverageRating DESC;
+
+-- I then looked at some more advanced queries in hive.
+
+-- 1. Maximum Total Sales Per Branch
+-- For the first complex query I am using the MAX function and AVG function to find the highest transaction and average transaction for each branch.
+-- The results will then be ordered by the branches with the highest individual sales transaction.
+
+SELECT Branch,
+    MAX(Total) AS MaxTotalSale,
+    AVG(Total) AS AvgTotalSale
+FROM clean_supermarket_sales
+GROUP BY Branch
+ORDER BY MaxTotalSale DESC;
+
+-- 2. Average Rating Between Different Customer Types
+-- For the second complex query I am performing a self-join to analyse and compare the average rating between different customer types (Member vs. Normal) in each city.
+-- This helps understand if there's a notable difference in customer satisfaction based on membership.
+
+SELECT a.City,
+    a.CustomerType AS CustomerType_A,
+    b.CustomerType AS CustomerType_B,
+    AVG(a.Rating) AS AvgRating_A,
+    AVG(b.Rating) AS AvgRating_B
+FROM clean_supermarket_sales a
+JOIN clean_supermarket_sales b
+    ON a.City = b.City
+    AND a.CustomerType <> b.CustomerType
+GROUP BY a.City, a.CustomerType, b.CustomerType
+ORDER BY a.City, AvgRating_A DESC;
+
+-- 3. Average Total Over 100 By City
+-- For the third complex query I will be using TABLESAMPLE to randomly sample the data to limit data processing.
+-- The query calculates the average total sales for orders greater than 100 in each city.
+
+SELECT City, AVG(Total) AS AvgTotal
+FROM clean_supermarket_sales TABLESAMPLE(20 PERCENT)
+WHERE Total > 100
+GROUP BY City
+ORDER BY AvgTotal DESC;
