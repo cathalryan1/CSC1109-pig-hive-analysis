@@ -11,7 +11,7 @@ The steps taken to carry out this assignment are listed briefly below:
 
 The contents of this repo are as follows:
 
-- [**Final PDF**](./path/to/Final_PDF.pdf) - Documentation for the assignment.
+- [**Final PDF**](./CSC1109-hive-and-pig-analysis.pdf) - Documentation for the assignment.
 - [**Data**](./data) - The folder that contains the supermarket sales dataset.
 - [**Outputs**](./outputs) - This folder contains all data output from Pig and Hive.
 - [**Visualisations**](./visualisations) - This folder contains a Jupyter notebook with the visualisations made from the clean data and the Hive output.
