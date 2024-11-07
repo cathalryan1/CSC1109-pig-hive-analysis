@@ -15,6 +15,6 @@ The contents of this repo are as follows:
 - [**Data**](./data) - The folder that contains the supermarket sales dataset.
 - [**Outputs**](./outputs) - This folder contains all data output from Pig and Hive.
 - [**Visualisations**](./visualisations) - This folder contains a Jupyter notebook with the visualisations made from the clean data and the Hive output.
-- [**Cleaning.pig**](./Cleaning.pig) - This Pig file cleans the dataset.
-- [**Processing.pig**](./Processing.pig) - This Pig file carries out the pig queries.
-- [**Hive_queries.hive**](./Hive_queries.hive) - This Hive file carries out the hive queries.
+- [**cleaning.pig**](./cleaning.pig) - This Pig file cleans the dataset.
+- [**pig-queries.pig**](./pig-queries.pig) - This Pig file carries out the pig queries.
+- [**hive-queries.hive**](./hive-queries.hive) - This Hive file carries out the hive queries.
